@@ -19,7 +19,8 @@ sourced from [here](http://www.raspberrypi.org/documentation/installation/instal
 
 5. at the end, you should see something like this in the terminal:
 
-```800+0 records in
+```
+800+0 records in
 800+0 records out
 838860800 bytes transferred in 186.166372 secs (4505974 bytes/sec)
 ```
