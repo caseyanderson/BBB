@@ -44,7 +44,7 @@ sourced from [here](http://www.raspberrypi.org/documentation/installation/instal
 
 6. the flashing process is complete when all four LEDs stay on without interruption.
 
-//
+/////////
 
 ## Part 3a: log in via ssh over LAN
 *i prefer working with BBBs over the network, so lets start with an explanation of how login wirelessly via ssh*
@@ -71,25 +71,22 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with AB
 ```
 
-//
+/////////
 
 ## Part 3b: log in via ssh over USB
 
+/////////
 
+## Part 4a: making a new user on our way to disabling root access via ssh
 
-so, root should only be reserved for special cases, and we dont want to keep it as a generally available user on our system. lets start by making a new user
-(sourced from here http://www.debian-administration.org/article/2/Adding_new_users)
+root should only be reserved for special cases, and we dont want to keep it as a generally available user on our system. lets start by making a new user
+(sourced from [here]( http://www.debian-administration.org/article/2/Adding_new_users)
 
-1. makes a login ```useradd <name of user>```
+1. make a login: ```useradd <name of user>```
 
-2. and ```passwd <name of user>``` will result in the following:
+2. and then change the password ```passwd <name of user>```
 
-```Enter new UNIX password:
-```
-
-type the password in twice (once for the first prompt, again to confirm)
-
-3. lets make a home directory for that new user:
+3. now, lets make a home directory for that new user:
 
 ```
 mkdir /home/<name of user>
@@ -98,7 +95,7 @@ chown <name of user>:users /home/<name of user>
 
 this creates a directory with the same name as the login account beneath the ```/home``` directory - then changes it to be owned by the user.
 
-4. lets add our new user to the list of sudoers ```sudo visudo```
+4. lets add our new user to the list of sudoers with ```sudo visudo```
 
 look for a line that reads something like the following:
 
@@ -111,7 +108,7 @@ and add your new user under root like this:
 
 ```# User privilege specification
 root    ALL=(ALL:ALL) ALL
-newuser     ALL=(ALL:ALL) ALL
+<newuser>     ALL=(ALL:ALL) ALL
 ```
 
 5. now type ```Ctrl-X``` (to close) and then ```Y``` and ```enter``` (to save)
@@ -121,7 +118,8 @@ newuser     ALL=(ALL:ALL) ALL
 and you should now be able to login to your new user
 
 //
-now lets change the root password, as anyone who knows anything about debian will be able to login as root currently
+
+## Part 4a: change the root password
 
 su
 (to become root if you logged into your new user)
