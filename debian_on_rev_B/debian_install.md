@@ -105,7 +105,7 @@ look for a line that reads something like the following:
 root    ALL=(ALL:ALL) ALL
 ```
 
-and add your new user under root like this:
+and add your new user under ```root``` like this:
 
 ```
 #User privilege specification
@@ -119,61 +119,70 @@ root    ALL=(ALL:ALL) ALL
 
 and you should now be able to login to your new user
 
-//
+/////////
 
-## Part 4a: change the root password
+## Part 4b: change the root password
 
-su
-(to become root if you logged into your new user)
+1. ```su``` to become root if you logged into your new user
 
-passwd
+2. ```passwd```
 
-Enter new UNIX password:
-Retype new UNIX password:
+3. enter new password twice
 
-(do that)
+4. now root has a different password
 
-now root has a different password
+/////////
 
-//
+## Part 4c: disable root login over ssh
 
-the entire reason i was interested in distributed computing was imagining the kind of scalability i could get by developing one image, spreading it across many boards, and communicating with each of them differently. in order to do that effectively, we need to be able to identify which machine we are talking to. so, lets change the hostname of the cpu
+1. go to ```/etc/ssh/sshd_config```
 
-1. sudo nano /etc/hostname
-<new hostname>
+2. you should see something that looks likes:
 
-2. Ctl-X, Y to save
+```
+Permitrootlogin yes
+```
 
-3. sudo nano /etc/hosts
-change
+which you should simply change to no
+
+3. save and exit
+
+4. reboot
+
+/////////
+
+## Part 5.: change hostname of the cpu
+
+1. ```sudo nano /etc/hostname```
+
+2. enter ```<new hostname>```
+
+3. ```Ctl-X```, ```Y``` to save
+
+4. ```sudo nano /etc/hosts```
+
+and change
+
+```
 127.0.0.1 localhost
 127.0.0.1 arm
+```
 
 to
-
+```
 127.0.0.1 localhost
 127.0.0.1 <new hostname>
+```
 
-4. Ctl-X, Y to save
+4. ```Ctl-X```, ```Y``` to save
 
-5. sudo reboot
+5. reboot
 
-6. login after reboot and you should see your changes take effect
+6. login after reboot and you should see your changes take effect (fyi, underscores are not allowed in hostnames...)
 
-(fyi, underscores are not allowed in hostnames...
-in other words, if you tried to set
+/////////
 
-deb_1
-
-as the host name, you will see this on login
-
-root@(none)
-
-)
-
-//
-
-static ip address
+## Part 6: static ip address
 
 go into /etc/network/interfaces to look at your current settings
 
