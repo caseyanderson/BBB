@@ -1,12 +1,12 @@
-#installing debian onto eMMC of BBB rev B
+# installing debian onto eMMC of BBB rev B
 Casey Anderson, July 2014
 
 
 I'm currently using this image: BBB-eMMC-flasher-debian-7.1-2013-10-08.img.xz (google it, I misplaced the url [note to self: find url]
 
 
-#writing image file to sd card (from mac osx)
-from mac (sourced from here: http://www.raspberrypi.org/documentation/installation/installing-images/mac.md):
+## writing image file to sd card (from mac osx)
+sourced from [here](http://www.raspberrypi.org/documentation/installation/installing-images/mac.md)
 
 1. diskutil list
 
