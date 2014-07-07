@@ -7,25 +7,20 @@ I'm currently using this image: BBB-eMMC-flasher-debian-7.1-2013-10-08.img.xz (g
 
 ## writing image file to sd card (from mac osx)
 sourced from [here](http://www.raspberrypi.org/documentation/installation/installing-images/mac.md)
+*do the following in the terminal, anything in carrots (< to >) denotes user input*
 
-1. diskutil list
-
-2. diskutil unmountDisk /dev/<disk# from diskutil>
-
-3. sudo dd bs=1m if=/<location of file on cpu> of=/dev/diskNUMBER
-
+1. `diskutil list`
+2. `diskutil unmountDisk /dev/<disk# from diskutil>`
+3. `sudo dd bs=1m if=/<location of file on cpu> of=/dev/<disk#>`
 4. go get a cup of coffee
-
 5. at the end, you should see something like this in the terminal:
 
-800+0 records in
+```800+0 records in
 800+0 records out
-838860800 bytes transferred in 186.166372 secs (4505974 bytes/sec)
+838860800 bytes transferred in 186.166372 secs (4505974 bytes/sec)```
 
-6. diskutil unmountDisk /dev/disk2
-(im actually not sure if this is totally necessary, but whatever. it couldnt hurt)
-
-7. diskutil eject /dev/disk2
+6. `diskutil unmountDisk /dev/disk2`
+7. `diskutil eject /dev/disk2`
 
 //
 
