@@ -80,45 +80,47 @@ Debian GNU/Linux comes with AB
 so, root should only be reserved for special cases, and we dont want to keep it as a generally available user on our system. lets start by making a new user
 (sourced from here http://www.debian-administration.org/article/2/Adding_new_users)
 
-1. useradd <name of user>
+1. makes a login ```useradd <name of user>```
 
-makes a login
+2. and ```passwd <name of user>``` will result in the following:
 
-2.  passwd <name of user>
-
-will result in the following
-
-Enter new UNIX password:
+```Enter new UNIX password:
+```
 
 type the password in twice (once for the first prompt, again to confirm)
 
-3. lets make a home directory for that user:
+3. lets make a home directory for that new user:
 
+```
 mkdir /home/<name of user>
-chown cta:users /home/cta
+chown <name of user>:users /home/<name of user>
+```
 
-This creates a directory with the same name as the login account beneath the /home directory - then changes it to be owned by the user.
+this creates a directory with the same name as the login account beneath the ```/home``` directory - then changes it to be owned by the user.
 
-finally, lets add our new user to the list of sudoers
-
-4. sudo visudo
+4. lets add our new user to the list of sudoers ```sudo visudo```
 
 look for a line that reads something like the following:
 
+```
 # User privilege specification
 root    ALL=(ALL:ALL) ALL
+```
 
 and add your new user under root like this:
-# User privilege specification
+
+```# User privilege specification
 root    ALL=(ALL:ALL) ALL
 newuser     ALL=(ALL:ALL) ALL
+```
 
-now type Ctrl-X (to close) and then Y and enter (to save)
+5. now type ```Ctrl-X``` (to close) and then ```Y``` and ```enter``` (to save)
 
-reboot and you should now be able to login to your new user
+6. reboot ```sudo reboot```
+
+and you should now be able to login to your new user
 
 //
-
 now lets change the root password, as anyone who knows anything about debian will be able to login as root currently
 
 su
