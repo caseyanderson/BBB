@@ -6,6 +6,7 @@ I'm currently using this image: BBB-eMMC-flasher-debian-7.1-2013-10-08.img.xz (g
 
 ## Part 1: writing image file to sd card (from mac osx)
 sourced from [here](http://www.raspberrypi.org/documentation/installation/installing-images/mac.md)
+
 *do the following in the terminal, anything in carrots (< to >) denotes user input*
 
 1. `diskutil list`
@@ -80,7 +81,7 @@ Debian GNU/Linux comes with AB
 ## Part 4a: making a new user on our way to disabling root access via ssh
 
 root should only be reserved for special cases, and we dont want to keep it as a generally available user on our system. lets start by making a new user
-(sourced from [here]( http://www.debian-administration.org/article/2/Adding_new_users)
+(sourced from [here]( http://www.debian-administration.org/article/2/Adding_new_users))
 
 1. make a login: ```useradd <name of user>```
 
@@ -100,13 +101,13 @@ this creates a directory with the same name as the login account beneath the ```
 look for a line that reads something like the following:
 
 ```
-# User privilege specification
+#User privilege specification
 root    ALL=(ALL:ALL) ALL
 ```
 
 and add your new user under root like this:
 
-```# User privilege specification
+```#User privilege specification
 root    ALL=(ALL:ALL) ALL
 <newuser>     ALL=(ALL:ALL) ALL
 ```
