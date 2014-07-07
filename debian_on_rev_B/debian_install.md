@@ -107,7 +107,8 @@ root    ALL=(ALL:ALL) ALL
 
 and add your new user under root like this:
 
-```#User privilege specification
+```
+#User privilege specification
 root    ALL=(ALL:ALL) ALL
 <newuser>     ALL=(ALL:ALL) ALL
 ```
