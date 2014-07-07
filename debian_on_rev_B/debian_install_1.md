@@ -4,8 +4,7 @@ Casey Anderson, July 2014
 
 I'm currently using this image: BBB-eMMC-flasher-debian-7.1-2013-10-08.img.xz (google it, I misplaced the url [note to self: find url]
 
-
-## writing image file to sd card (from mac osx)
+##Part 1: writing image file to sd card (from mac osx)
 sourced from [here](http://www.raspberrypi.org/documentation/installation/installing-images/mac.md)
 *do the following in the terminal, anything in carrots (< to >) denotes user input*
 
@@ -22,28 +21,26 @@ sourced from [here](http://www.raspberrypi.org/documentation/installation/instal
 6. `diskutil unmountDisk /dev/disk2`
 7. `diskutil eject /dev/disk2`
 
-//
+/////////
 
-Part 2: flashing the image to the internal eMMC
-(i.e. put the SD card in the BBB...)
+##Part 2: flashing the image to the internal eMMC
+*i.e. put the SD card in the BBB...*
 
 1. power down your BBB, keep ethernet plugged in (why not)
-
 2. put sd card into slot
+3. hold the user boot button down, apply power
 
-3. hold user boot button down, apply power
+![alt text](https://github.com/caseyanderson/BBB/blob/master/debian_on_rev_B/beaglebone.black.jpg)
+
 
 4. once all four LEDs are on, continue holding until it switches to two leds, then let go of user boot (the heartbeat should change to the bottom two leds being predominantly on, with the other two flashing periodically)
-
 5. go get a cup of coffee
-
-note: sometimes this works, sometimes it doesnt. not really sure why. worst case scenario, check on lanscan to see if your BBB is up on the network...if its not debian (remember, we are talking about rev b devices that shipped with angstrom), then you need to do it over again
-
-6. the flashing process is complete when all four LEDs stay on without interruption. err on the side of letting it sit in this state for longer than seems necessary.
+*note: sometimes this works, sometimes it doesnt (often times because one did not hold the user boot button down long enough). worst case scenario, check on lanscan to see if your BBB is up on the network...if its not debian (remember, we are talking about rev b devices that shipped with angstrom), then you need to do it over again
+6. the flashing process is complete when all four LEDs stay on without interruption.
 
 //
 
-log in via local area network over ssh
+##Part 3: log in via local area network over ssh
 
 1. start with the BBB powered down anad ethernet plugged in (make sure nothing else is plugged in for now)
 
