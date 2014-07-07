@@ -21,7 +21,8 @@ sourced from [here](http://www.raspberrypi.org/documentation/installation/instal
 
 ```800+0 records in
 800+0 records out
-838860800 bytes transferred in 186.166372 secs (4505974 bytes/sec)```
+838860800 bytes transferred in 186.166372 secs (4505974 bytes/sec)
+```
 
 6. `diskutil unmountDisk /dev/disk2`
 
@@ -41,6 +42,7 @@ sourced from [here](http://www.raspberrypi.org/documentation/installation/instal
 4. once all four LEDs are on, continue holding until it switches to two leds, then let go of user boot (the heartbeat should change to the bottom two leds being predominantly on, with the other two flashing periodically)
 
 5. go get a cup of coffee
+
 *note: sometimes this works, sometimes it doesnt (often times because one did not hold the user boot button down long enough).*
 
 6. the flashing process is complete when all four LEDs stay on without interruption.
@@ -48,7 +50,7 @@ sourced from [here](http://www.raspberrypi.org/documentation/installation/instal
 /////////
 
 ## Part 3a: log in via ssh over LAN
-*i prefer working with BBBs over the network, so lets start with an explanation of how login wirelessly via ssh*
+*i prefer working with BBBs over the network, so lets start with an explanation of wireless ssh login*
 
 1. start with the BBB powered down and ethernet plugged in (make sure nothing else is plugged in for now)
 
@@ -125,7 +127,7 @@ and you should now be able to login to your new user
 
 1. ```su``` to become root if you logged into your new user
 
-2. ```passwd```
+2. then ```passwd```
 
 3. enter new password twice
 
@@ -182,85 +184,3 @@ to
 
 /////////
 
-## Part 6: static ip address
-
-go into /etc/network/interfaces to look at your current settings
-
-1. sudo nano /etc/network/interfaces
-
-so, kind of depends what you want to do with this board. if you are going to be moving it around from place to place, it might be better to keep the settings where they are (i.e. the board will get a new IP address from whatever network it connects to). however, one of the problems with this: if there are a million devices on the network already, its going to be difficult to locate the board. in the past, i have added a script that launches on startup (with cron), which logs into one of my email addresses and emails the BBB's ip to another email address. there are some security issues with how im doing that currently, but i had okay results with that (the only drawback is that it sometimes takes a minute for a device to be assigned an ip, log into one email service, and email another one, and that can get annoying). ill cover how to do this in the near future, but if you know that you will be consistantly connecting to the same network, or will not be moving the board from location to location, then you could also simply opt for a static ip.
-
-so, by default /etc/network/interfaces has the following set:
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-1. comment out both of those (you can delete it, but its easier to comment it out on the offchance that you make a mistake and need to redo this file)
-i.e. should look like this:
-
-# The primary network interface
-#auto eth0
-#iface eth0 inet dhcp
-
-2. now, down at the bottom, add something like this:
-
-auto eth0
-iface eth0 inet static
-address 192.168.1.100
-netmask 255.255.255.0
-network 192.168.1.0
-broadcast 192.168.1.255
-gateway 192.168.1.1
-
-with your own info in there. more specifically, you will need to change the following parameters:
-
-address <youripaddress>
-nemask <normally 255.255.255.0, but check to be sure>
-network <yournetworkip>
-broadcast <yourbroadcast>
-gateway <your gateway>
-
-a few different ways to find this info
-
-1. in the same shell that you are wirelessly ssh-ing into the BBB, type ifconfig to see your current network settings. its a bit difficult to read some of these, and fortunately linux has some nice tools for such things
-
-insert list of tools for such things here
-
-to confirm, sudo reboot, log in again when your system is up. you should now see the exact same settings you entered previously.
-
-//
-one last setup issue and then we can start actually doing things
-
-so, we have changed the root login, but peopel still know that there is probably a way to login as root if they can guess the password. lets fix it so that is impossible. in other words, we are going to set it so that no one is allowed to login as root at all. in order to be root, one will have to login as one of our users (and they would have to know that that user is there), and THEN switch to root. we want that kind of security just in case. also, for fun, i have switched the SSH login port so that it is even harder for someone else to login to this machine.
-
-sudo nano /etc/ssh/sshd_config
-
-change Port to something else
-Port 2033 (i did 2233)
-
-and disable root login
-Permitrootlogin no
-
-there seems to be some disagreement about whether changing the port number makes sense. its up to you, ultimately, but if you want to do it, that is how
-
-//
-updating and upgrading (plus other general debian setup stuff)
-finally, actual linux stuff!
-
-update server package list and upgrade packages
-
-sudo apt-get update
-sudo apt-get upgrade
-
-set timezone:
-
-sudo dpkg-reconfigure tzdata
-
-do this twice. the first time you will set country and time zone (US, Pacific Ocean), the second time you will specify America and then, if you are in LA, Los Angeles. it will open an ancient looking gui window for you to interact with to do this stuff
-
-to add usb support
-
-sudo apt-get install usbmount
-
-//
