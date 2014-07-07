@@ -28,10 +28,7 @@ sourced from [here](http://www.raspberrypi.org/documentation/installation/instal
 
 1. power down your BBB, keep ethernet plugged in (why not)
 2. put sd card into slot
-3. hold the user boot button down, apply power
-
-![alt text](https://github.com/caseyanderson/BBB/blob/master/debian_on_rev_B/beaglebone.black.jpg)
-
+3. hold the user boot button [user boot button](https://www.google.com/search?q=beaglebone+black+user+boot+button&espv=2&source=lnms&tbm=isch&sa=X&ei=Gfm5U9qMB8zjoAS2qIEY&ved=0CAcQ_AUoAg&biw=1039&bih=779&dpr=1) down, apply power
 
 4. once all four LEDs are on, continue holding until it switches to two leds, then let go of user boot (the heartbeat should change to the bottom two leds being predominantly on, with the other two flashing periodically)
 5. go get a cup of coffee
