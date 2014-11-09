@@ -11,4 +11,4 @@
 
 5. restart and the BBB should email its IP on boot.
 
-Note: if you are not receiving the email on the `you` side, you have likely either forgot to make the `.py` file executable or need to add some amount of a wait (`time.sleep(xSeconds)`) somewhere in the script.
+Note: if you are not receiving the email on the `you` side, you have likely either forgot to make the `.py` file executable or need to add some amount of a wait (`time.sleep(xSeconds)`) somewhere in the script. The main issue here is generally the amount of time it takes for login to the `me` email address.
