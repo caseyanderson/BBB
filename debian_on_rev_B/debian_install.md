@@ -2,7 +2,7 @@
 Casey Anderson, July 2014
 
 
-I'm currently using this image: BBB-eMMC-flasher-debian-7.1-2013-10-08.img.xz (google it,as I apparently misplaced the url [note to self: find url]
+I'm currently using this image: https://debian.beagleboard.org/images/bone-debian-8.3-lxqt-4gb-armhf-2016-01-24-4gb.img.xz
 
 ## Part 1: writing image file to sd card (from mac osx)
 sourced from [here](http://www.raspberrypi.org/documentation/installation/installing-images/mac.md)
@@ -184,4 +184,3 @@ to
 6. login after reboot and you should see your changes take effect (fyi, underscores are not allowed in hostnames...)
 
 /////////
-
